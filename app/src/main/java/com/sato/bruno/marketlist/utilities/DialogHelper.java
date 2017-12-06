@@ -16,7 +16,7 @@ public class DialogHelper {
 
         ProgressBar progressBar = new ProgressBar(context);
         progressBar.setIndeterminate(true);
-        progressBar.getIndeterminateDrawable().setColorFilter(context.getResources().getColor(R.color.colorButtonPrimary), android.graphics.PorterDuff.Mode.MULTIPLY);
+        progressBar.getIndeterminateDrawable().setColorFilter(context.getResources().getColor(R.color.colorSecondary), android.graphics.PorterDuff.Mode.MULTIPLY);
         builder.setView(progressBar);
 
         builder.setCancelable(true);

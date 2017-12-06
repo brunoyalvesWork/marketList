@@ -36,7 +36,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tb_cadastro_usuario"
             android:textColor="@android:color/black"
-            android:backgroundTint="@color/colorAccent" />
+            android:backgroundTint="@color/colorSecondaryDark" />
 
         <EditText
             android:id="@+id/ed_cadastro_email"
@@ -53,7 +53,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ed_cadastro_nome"
             android:textColor="@android:color/black"
-            android:backgroundTint="@color/colorAccent" />
+            android:backgroundTint="@color/colorSecondaryDark" />
 
         <EditText
             android:id="@+id/ed_cadastro_senha"
@@ -70,7 +70,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ed_cadastro_email"
             android:textColor="@android:color/black"
-            android:backgroundTint="@color/colorAccent" />
+            android:backgroundTint="@color/colorSecondaryDark" />
 
         <Button
             android:id="@+id/bt_cadastro_usuario"

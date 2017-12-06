@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3AD6AC</color>
-    <color name="colorPrimaryDark">#1E9475</color>
-    <color name="colorAccent">#8E24AA</color>
+    <color name="colorPrimary">#3f51b5</color>
+    <color name="colorPrimaryLight">#757de8</color>
+    <color name="colorPrimaryDark">#002984</color>
 
-    <color name="colorButtonPrimary">#9C27B0</color>
-    <color name="colorButtonPrimaryRipple">#dc96e8</color>
-
-    <color name="colorButtonCancel">#757575</color>
+    <color name="colorSecondary">#9c27b0</color>
+    <color name="colorSecondaryLight">#d05ce3</color>
+    <color name="colorSecondaryDark">#6a0080</color>
 
     <color name="colorItemNotBuy">#803AD6AC</color>
     <color name="colorItemToBuy">#80e57373</color>

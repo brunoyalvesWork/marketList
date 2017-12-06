@@ -2,12 +2,12 @@
 <ripple
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:color="@color/colorButtonPrimaryRipple"
+    android:color="@color/colorSecondaryLight"
     tools:targetApi="N">
 
     <item>
         <shape xmlns:android="http://schemas.android.com/apk/res/android">
-            <solid android:color="@color/colorButtonPrimary"/>
+            <solid android:color="@color/colorSecondary"/>
             <corners android:radius="5dp"/>
             <padding android:left="0dp" android:top="0dp" android:right="0dp" android:bottom="0dp" />
         </shape>
