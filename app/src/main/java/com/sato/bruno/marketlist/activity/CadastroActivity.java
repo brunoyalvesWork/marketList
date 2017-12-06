@@ -55,7 +55,7 @@ public class CadastroActivity extends AppCompatActivity {
         senha = findViewById(R.id.ed_cadastro_senha);
         connectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        toolbar.setTitle("Cadadatro");
+        toolbar.setTitle("Cadastro");
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         setSupportActionBar(toolbar);
 
@@ -70,7 +70,7 @@ public class CadastroActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Verifique se todos os campos obrigatórios estão preenchidos", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), "É necessário estar conectado a internet para se cadastrar no app.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "É necessário estar conectado a internet para se cadastrar no aplicativo.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -79,6 +79,7 @@ public class CadastroActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(CadastroActivity.this, LoginActivity.class));
+                finish();
             }
         });
     }
@@ -122,7 +123,7 @@ public class CadastroActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
-                                                preferencias.salvaIdUsuario(firebaseAuth.getCurrentUser().getUid());
+                                                preferencias.salvaIdUsuario(firebaseUser.getUid());
                                                 preferencias.salvaNomeUsuario(firebaseUser.getDisplayName());
                                                 preferencias.salvaEmailUsuario(firebaseUser.getEmail());
                                                 preferencias.salvaEstadoLogin();

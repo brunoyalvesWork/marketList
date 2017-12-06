@@ -1,6 +1,5 @@
 package com.sato.bruno.marketlist.utilities;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.v7.app.AlertDialog;
 import android.widget.ProgressBar;

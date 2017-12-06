@@ -45,6 +45,11 @@ public class Preferencias {
         editor.putBoolean(CHAVE_LOGADO, true);
         editor.apply();
     }
+    public void removeEstadoLogin() {
+
+        editor.putBoolean(CHAVE_LOGADO, false);
+        editor.apply();
+    }
 
     public String getIdUsuarioLogado() {
         return preferences.getString(CHAVE_ID_USUARIO, null);
