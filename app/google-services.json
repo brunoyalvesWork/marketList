@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "721741901556",
+    "firebase_url": "https://market-list-app.firebaseio.com",
+    "project_id": "market-list-app",
+    "storage_bucket": "market-list-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:721741901556:android:f33e9490047c76ee",
+        "android_client_info": {
+          "package_name": "com.sato.bruno.marketlist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "721741901556-sonasjtavm8skd7f463dvn6cjeivt56p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sato.bruno.marketlist",
+            "certificate_hash": "60a612da1b5ad3b11ca1c0dbe70ae0a257c6f0a1"
+          }
+        },
+        {
+          "client_id": "721741901556-cr4lk7o1o3vbs83isvot4ta3oc02m27p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEj4CxGO8Mkn-Gq_NPZJbgZcRpkbB7ec4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "721741901556-cr4lk7o1o3vbs83isvot4ta3oc02m27p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

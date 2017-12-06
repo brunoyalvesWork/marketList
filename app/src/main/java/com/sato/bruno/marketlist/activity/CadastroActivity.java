@@ -1,30 +1,76 @@
 package com.sato.bruno.marketlist.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.sato.bruno.marketlist.R;
+import com.sato.bruno.marketlist.db.ConfiguracaoFirebase;
+import com.sato.bruno.marketlist.utilities.DialogHelper;
+import com.sato.bruno.marketlist.utilities.VerificaConexao;
 
 public class CadastroActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private TextView txLogin;
+    private Button btCadastro;
+    private EditText nome;
+    private EditText email;
+    private EditText senha;
+    private FirebaseAuth firebaseAuth;
+    private ConnectivityManager connectionManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
+        firebaseAuth = ConfiguracaoFirebase.getFirebaseAuth();
+
         toolbar = findViewById(R.id.tb_cadastro_usuario);
         txLogin = findViewById(R.id.tx_login);
+        btCadastro = findViewById(R.id.bt_cadastro_usuario);
+        nome = findViewById(R.id.ed_cadastro_nome);
+        email = findViewById(R.id.ed_cadastro_email);
+        senha = findViewById(R.id.ed_cadastro_senha);
+        connectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
         toolbar.setTitle("Cadadatro");
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         setSupportActionBar(toolbar);
+
+        btCadastro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (VerificaConexao.isConectado(connectionManager)) {
+                    if(validaCampos()) {
+                        DialogHelper.dialogLoading(CadastroActivity.this);
+                        cadastrarUsuario(nome.getText().toString(), email.getText().toString(), senha.getText().toString());
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Verifique se todos os campos obrigatórios estão preenchidos", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "É necessário estar conectado a internet para se cadastrar no app.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         txLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,5 +78,60 @@ public class CadastroActivity extends AppCompatActivity {
                 startActivity(new Intent(CadastroActivity.this, LoginActivity.class));
             }
         });
+    }
+
+    private boolean validaCampos() {
+        boolean cadastrar = true;
+
+        if (nome.getText().toString().isEmpty()) {
+            nome.setError("Campo obrigatório");
+            cadastrar = false;
+        }
+        if (email.getText().toString().isEmpty()) {
+            email.setError("Campo obrigatório");
+            cadastrar = false;
+        }
+        if (senha.getText().toString().isEmpty()) {
+            senha.setError("Campo obrigatório");
+            cadastrar = false;
+        }
+        return cadastrar;
+    }
+
+    private void cadastrarUsuario(final String nome, String email, String senha) {
+
+        this.nome.setText("");
+        this.email.setText("");
+        this.senha.setText("");
+
+        firebaseAuth.createUserWithEmailAndPassword(email, senha)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+
+                            UserProfileChangeRequest profileUdates = new UserProfileChangeRequest.Builder()
+                                    .setDisplayName(nome)
+                                    .build();
+                            firebaseUser.updateProfile(profileUdates)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(getApplicationContext(), "Cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
+                                                Log.i("CADASTRO_USER", "Nome de usuário cadastrado");
+                                            } else {
+                                                Toast.makeText(getApplicationContext(), "Não foi possível cadastrar o usuário!", Toast.LENGTH_SHORT).show();
+                                                Log.i("CADASTRO_USER", task.getException().getMessage());
+                                            }
+                                        }
+                                    });
+                        } else {
+
+                        }
+                        DialogHelper.removeDialogLogin();
+                    }
+                });
     }
 }
