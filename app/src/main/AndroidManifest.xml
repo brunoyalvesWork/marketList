@@ -29,6 +29,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.CadastroActivity" />
         </activity>
+        <activity android:name=".activity.PrincipalActivity"></activity>
     </application>
 
 </manifest>

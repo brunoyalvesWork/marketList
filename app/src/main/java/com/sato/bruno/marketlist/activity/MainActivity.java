@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.sato.bruno.marketlist.R;
+import com.sato.bruno.marketlist.utilities.Preferencias;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,6 +16,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Preferencias preferencias = new Preferencias(MainActivity.this);
+        if (preferencias.getEstadoLogin()) {
+            startActivity(new Intent(MainActivity.this, PrincipalActivity.class));
+            finish();
+        }
+
         setContentView(R.layout.activity_main);
 
         btIniciar = findViewById(R.id.bt_iniciar);

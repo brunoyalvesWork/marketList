@@ -23,6 +23,7 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.sato.bruno.marketlist.R;
 import com.sato.bruno.marketlist.db.ConfiguracaoFirebase;
 import com.sato.bruno.marketlist.utilities.DialogHelper;
+import com.sato.bruno.marketlist.utilities.Preferencias;
 import com.sato.bruno.marketlist.utilities.VerificaConexao;
 
 public class CadastroActivity extends AppCompatActivity {
@@ -35,6 +36,7 @@ public class CadastroActivity extends AppCompatActivity {
     private EditText senha;
     private FirebaseAuth firebaseAuth;
     private ConnectivityManager connectionManager;
+    private Preferencias preferencias;
 
 
     @Override
@@ -43,6 +45,7 @@ public class CadastroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro);
 
         firebaseAuth = ConfiguracaoFirebase.getFirebaseAuth();
+        preferencias = new Preferencias(CadastroActivity.this);
 
         toolbar = findViewById(R.id.tb_cadastro_usuario);
         txLogin = findViewById(R.id.tx_login);
@@ -98,7 +101,7 @@ public class CadastroActivity extends AppCompatActivity {
         return cadastrar;
     }
 
-    private void cadastrarUsuario(final String nome, String email, String senha) {
+    private void cadastrarUsuario(final String nome, final String email, String senha) {
 
         this.nome.setText("");
         this.email.setText("");
@@ -119,7 +122,13 @@ public class CadastroActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
+                                                preferencias.salvaIdUsuario(firebaseAuth.getCurrentUser().getUid());
+                                                preferencias.salvaNomeUsuario(firebaseUser.getDisplayName());
+                                                preferencias.salvaEmailUsuario(firebaseUser.getEmail());
+                                                preferencias.salvaEstadoLogin();
                                                 Toast.makeText(getApplicationContext(), "Cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
+                                                startActivity(new Intent(CadastroActivity.this, PrincipalActivity.class));
+                                                finish();
                                                 Log.i("CADASTRO_USER", "Nome de usuário cadastrado");
                                             } else {
                                                 Toast.makeText(getApplicationContext(), "Não foi possível cadastrar o usuário!", Toast.LENGTH_SHORT).show();
