@@ -4,4 +4,5 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:background="@color/colorPrimary"
+    android:fontFamily="@font/roboto"
     class="android.support.v7.widget.Toolbar" />
