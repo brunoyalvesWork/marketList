@@ -1,8 +1,11 @@
 package com.sato.bruno.marketlist.activity;
 
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -10,20 +13,19 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.sato.bruno.marketlist.R;
+import com.sato.bruno.marketlist.adapter.TabAdapter;
 import com.sato.bruno.marketlist.db.ConfiguracaoFirebase;
 import com.sato.bruno.marketlist.utilities.Preferencias;
+import com.sato.bruno.marketlist.utilities.SlidingTabLayout;
 
 public class PrincipalActivity extends AppCompatActivity {
 
     private Preferencias preferencias;
     private FirebaseAuth firebaseAuth;
     private boolean btBackPressed = false;
-
-    private TextView tx1;
-    private TextView tx2;
-    private TextView tx3;
-    private TextView tx4;
-    private Button btn;
+    private String[] tabLabels;
+    private ViewPager viewPager;
+    private SlidingTabLayout slidingTabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,27 +35,22 @@ public class PrincipalActivity extends AppCompatActivity {
         preferencias = new Preferencias(PrincipalActivity.this);
         firebaseAuth = ConfiguracaoFirebase.getFirebaseAuth();
 
-        tx1 = findViewById(R.id.textView3);
-        tx2 = findViewById(R.id.textView4);
-        tx3 = findViewById(R.id.textView5);
-        tx4 = findViewById(R.id.textView6);
-        btn = findViewById(R.id.button2);
+        tabLabels = new String[]{"LISTA", "PRODUTOS", "CONFIGURAÇÕES"};
 
-        tx1.setText(preferencias.getIdUsuarioLogado());
-        tx2.setText(preferencias.getEmailUsuarioLogado());
-        tx3.setText(preferencias.getNomeUsuarioLogado());
-        tx4.setText(preferencias.getEstadoLogin().toString());
+        Toolbar toolbar = findViewById(R.id.toolbar_principal);
+        toolbar.setTitle("Início");
+        setSupportActionBar(toolbar);
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                firebaseAuth.signOut();
-                preferencias.removeEstadoLogin();
-                startActivity(new Intent(PrincipalActivity.this, MainActivity.class));
-                finish();
-            }
-        });
+        slidingTabLayout = findViewById(R.id.stl_tabs);
+        viewPager = findViewById(R.id.vp_pagina);
 
+        slidingTabLayout.setDistributeEvenly(true);
+        slidingTabLayout.setSelectedIndicatorColors(ContextCompat.getColor(this, R.color.colorSecondary));
+
+        TabAdapter tabAdapter = new TabAdapter(getSupportFragmentManager(), tabLabels);
+        viewPager.setAdapter(tabAdapter);
+
+        slidingTabLayout.setViewPager(viewPager);
     }
 
     @Override
