@@ -3,6 +3,7 @@ package com.sato.bruno.marketlist.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
@@ -26,6 +27,7 @@ import com.sato.bruno.marketlist.adapter.TabAdapter;
 import com.sato.bruno.marketlist.db.ConfiguracaoFirebase;
 import com.sato.bruno.marketlist.utilities.Preferencias;
 import com.sato.bruno.marketlist.utilities.SlidingTabLayout;
+import com.sato.bruno.marketlist.utilities.VerificaConexao;
 
 public class PrincipalActivity extends AppCompatActivity {
 
@@ -35,6 +37,7 @@ public class PrincipalActivity extends AppCompatActivity {
     private String[] tabLabels;
     private ViewPager viewPager;
     private SlidingTabLayout slidingTabLayout;
+    private ConnectivityManager connectionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,8 @@ public class PrincipalActivity extends AppCompatActivity {
 
         preferencias = new Preferencias(PrincipalActivity.this);
         firebaseAuth = ConfiguracaoFirebase.getFirebaseAuth();
+
+        connectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
         tabLabels = new String[]{"LISTA", "PRODUTOS", "CONFIGURAÇÕES"};
 
@@ -87,7 +92,9 @@ public class PrincipalActivity extends AppCompatActivity {
 
     private void logout() {
 
-        firebaseAuth.signOut();
+        if (VerificaConexao.isConectado(connectionManager)) {
+            firebaseAuth.signOut();
+        }
         preferencias.removeEstadoLogin();
         startActivity(new Intent(PrincipalActivity.this, MainActivity.class));
         finish();
