@@ -75,12 +75,22 @@ public class PrincipalActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.item_sobre:
+                startActivity(new Intent(PrincipalActivity.this, SobreActivity.class));
                 return true;
             case R.id.item_sair:
+                logout();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void logout() {
+
+        firebaseAuth.signOut();
+        preferencias.removeEstadoLogin();
+        startActivity(new Intent(PrincipalActivity.this, MainActivity.class));
+        finish();
     }
 
     @Override

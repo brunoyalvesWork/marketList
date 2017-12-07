@@ -29,7 +29,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.MainActivity" />
         </activity>
-        <activity android:name=".activity.PrincipalActivity"></activity>
+        <activity android:name=".activity.PrincipalActivity" />
+        <activity android:name=".activity.SobreActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.PrincipalActivity" />
+        </activity>
     </application>
 
 </manifest>
