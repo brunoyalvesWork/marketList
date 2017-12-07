@@ -39,7 +39,7 @@
                 android:backgroundTint="@color/colorSecondaryDark"
                 android:fontFamily="@font/roboto"
                 android:hint="Nome de usuário"
-                android:inputType="textEmailAddress"
+                android:inputType="text"
                 android:textColorHint="@color/colorSecondary" />
 
         </android.support.design.widget.TextInputLayout>
@@ -86,8 +86,8 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorSecondaryDark"
                 android:fontFamily="@font/roboto"
-                android:hint="E-mail"
-                android:inputType="textEmailAddress"
+                android:hint="Senha"
+                android:inputType="textPassword"
                 android:textColorHint="@color/colorSecondary" />
 
         </android.support.design.widget.TextInputLayout>

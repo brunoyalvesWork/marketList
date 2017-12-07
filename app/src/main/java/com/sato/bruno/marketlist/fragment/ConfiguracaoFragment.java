@@ -14,17 +14,18 @@ import com.sato.bruno.marketlist.R;
  */
 public class ConfiguracaoFragment extends Fragment {
 
-
     public ConfiguracaoFragment() {
         // Required empty public constructor
     }
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_configuracao, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_configuracao, container, false);
+
+
+
+        return view;
     }
 
 }
