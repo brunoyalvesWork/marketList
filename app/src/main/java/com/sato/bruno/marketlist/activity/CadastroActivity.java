@@ -25,7 +25,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.sato.bruno.marketlist.R;
 import com.sato.bruno.marketlist.db.ConfiguracaoFirebase;
-import com.sato.bruno.marketlist.utilities.DialogHelper;
 import com.sato.bruno.marketlist.utilities.Preferencias;
 import com.sato.bruno.marketlist.utilities.VerificaConexao;
 
@@ -67,7 +66,6 @@ public class CadastroActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (VerificaConexao.isConectado(connectionManager)) {
                     if(validaCampos()) {
-                        DialogHelper.dialogLoading(CadastroActivity.this);
                         cadastrarUsuario(nome.getText().toString(), email.getText().toString(), senha.getText().toString());
                     } else {
                         Toast.makeText(getApplicationContext(), "Verifique se todos os campos obrigatórios estão preenchidos", Toast.LENGTH_SHORT).show();
@@ -154,7 +152,6 @@ public class CadastroActivity extends AppCompatActivity {
                         } else {
 
                         }
-                        DialogHelper.removeDialogLogin();
                     }
                 });
     }
