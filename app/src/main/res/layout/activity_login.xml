@@ -34,48 +34,59 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tb_login" />
 
-        <EditText
-            android:id="@+id/ed_login_email"
-            style="@style/Widget.AppCompat.AutoCompleteTextView"
-            android:layout_width="0dp"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/layout_ed_nome"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:textColor="@android:color/black"
-            android:backgroundTint="@color/colorSecondaryDark"
-            android:ems="10"
-            android:hint="E-mail"
-            android:fontFamily="@font/roboto"
-            android:inputType="textEmailAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/ed_login_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:inputType="textEmailAddress"
+                android:backgroundTint="@color/colorSecondaryDark"
+                android:textColorHint="@color/colorSecondary"
+                android:hint="E-mail" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/layout_ed_senha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/layout_ed_nome">
 
-        <EditText
-            android:id="@+id/ed_login_senha"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:textColor="@android:color/black"
-            android:backgroundTint="@color/colorSecondaryDark"
-            android:ems="10"
-            android:fontFamily="@font/roboto"
-            android:hint="Senha"
-            android:inputType="textPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ed_login_email" />
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/ed_login_senha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorSecondaryDark"
+                android:fontFamily="@font/roboto"
+                android:hint="Senha"
+                android:inputType="textEmailAddress"
+                android:textColorHint="@color/colorSecondary" />
+
+        </android.support.design.widget.TextInputLayout>
 
         <Button
             android:id="@+id/bt_entrar_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:elevation="6dp"
             android:fontFamily="@font/roboto"
@@ -85,7 +96,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.958"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ed_login_senha" />
+            app:layout_constraintTop_toBottomOf="@+id/layout_ed_senha" />
 
         <TextView
             android:id="@+id/tx_esqueci_senha"
