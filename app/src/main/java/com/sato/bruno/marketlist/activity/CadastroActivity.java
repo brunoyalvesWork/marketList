@@ -18,6 +18,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.sato.bruno.marketlist.R;
@@ -130,10 +133,21 @@ public class CadastroActivity extends AppCompatActivity {
                                                 Toast.makeText(getApplicationContext(), "Cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
                                                 startActivity(new Intent(CadastroActivity.this, PrincipalActivity.class));
                                                 finish();
-                                                Log.i("CADASTRO_USER", "Nome de usuário cadastrado");
                                             } else {
-                                                Toast.makeText(getApplicationContext(), "Não foi possível cadastrar o usuário!", Toast.LENGTH_SHORT).show();
-                                                Log.i("CADASTRO_USER", task.getException().getMessage());
+                                                String erroExcessao;
+                                                try {
+                                                    throw task.getException();
+                                                } catch (FirebaseAuthWeakPasswordException e) {
+                                                    erroExcessao = "Digite uma senha com no mínimo 6 caracteres!";
+                                                } catch (FirebaseAuthInvalidCredentialsException e) {
+                                                    erroExcessao = "O e-mail digitado é inválido!";
+                                                } catch (FirebaseAuthUserCollisionException e) {
+                                                    erroExcessao = "Já existe uma conta com esse e-mail!";
+                                                } catch (Exception e) {
+                                                    erroExcessao = "Erro ao efetuar cadastro!";
+                                                    e.printStackTrace();
+                                                }
+                                                Toast.makeText(CadastroActivity.this, erroExcessao, Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                     });
