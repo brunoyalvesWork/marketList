@@ -8,7 +8,7 @@ public class DbHelper extends SQLiteOpenHelper{
 
     private static final String DATABASE_NAME = "MkList.db";
     private static final int DATABASE_VERSION = 1;
-    private final String CREATE_TABLE_PRODUTO = "CREATE TABLE produto (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, categoria TEXT NOT NULL)";
+    private final String CREATE_TABLE_PRODUTO = "CREATE TABLE produto (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, categoria TEXT NOT NULL, descricao TEXT, icone TEXT NOT NULL)";
     private final String CREATE_TABLE_LISTA = "CREATE TABLE lista (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, cod TEXT)";
     private final String CREATE_TABLE_LISTAxPRODUTO = "CREATE TABLE listaXproduto (id INTEGER PRIMARY KEY AUTOINCREMENT, id_lista INTEGER NOT NULL, id_produto INTEGER NOT NULL, quantidade FLOAT)";
 

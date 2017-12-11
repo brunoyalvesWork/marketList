@@ -25,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.sato.bruno.marketlist.R;
 import com.sato.bruno.marketlist.adapter.TabAdapter;
 import com.sato.bruno.marketlist.db.ConfiguracaoFirebase;
+import com.sato.bruno.marketlist.db.Populate;
 import com.sato.bruno.marketlist.utilities.Preferencias;
 import com.sato.bruno.marketlist.utilities.SlidingTabLayout;
 import com.sato.bruno.marketlist.utilities.VerificaConexao;
@@ -46,6 +47,12 @@ public class PrincipalActivity extends AppCompatActivity {
 
         preferencias = new Preferencias(PrincipalActivity.this);
         firebaseAuth = ConfiguracaoFirebase.getFirebaseAuth();
+
+        if (!preferencias.getProdutosPopulado()) {
+            Populate populate = new Populate();
+            populate.populate(PrincipalActivity.this);
+            preferencias.salvaProdutosPopulado();
+        }
 
         connectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
