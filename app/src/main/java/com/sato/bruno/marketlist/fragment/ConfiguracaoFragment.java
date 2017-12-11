@@ -1,6 +1,7 @@
 package com.sato.bruno.marketlist.fragment;
 
 
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -46,6 +47,9 @@ public class ConfiguracaoFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (configuracoes.get(i).equals("Perfil")){
                     startActivity(new Intent(getActivity(), PerfilActivity.class));
+                }
+                else if (configuracoes.get(i).equals("Listas")) {
+                    startActivity(new Intent(getActivity(), ListActivity.class));
                 }
             }
         });

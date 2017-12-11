@@ -52,7 +52,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.PrincipalActivity" />
         </activity>
-        <activity android:name=".activity.CriarListaActivity"></activity>
+        <activity android:name=".activity.CriarListaActivity" />
+        <activity android:name=".activity.ListasActivity"></activity>
     </application>
 
 </manifest>

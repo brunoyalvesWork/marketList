@@ -63,7 +63,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
         connectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        tabLabels = new String[]{"LISTA", "PRODUTOS", "CONFIGURAÇÕES"};
+        tabLabels = new String[]{preferencias.getListaSelecionada(), "PRODUTOS", "CONFIGURAÇÕES"};
 
         Toolbar toolbar = findViewById(R.id.toolbar_principal);
         toolbar.setTitle("Início");
