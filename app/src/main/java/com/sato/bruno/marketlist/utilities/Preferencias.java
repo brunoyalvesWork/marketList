@@ -15,6 +15,7 @@ public class Preferencias {
     private String CHAVE_EMAIL_USUARIO = "emailUsuarioLogado";
     private String CHAVE_LOGADO = "isLogado";
     private String CHAVE_PRODUTO_POPULADO = "produtosPopulado";
+    private String CHAVE_LISTA_SELECIONADA = "listaSelecionada";
 
     public Preferencias(Context context) {
 
@@ -63,6 +64,17 @@ public class Preferencias {
         editor.apply();
     }
 
+    public void adicionaListaSelecionada(String lista) {
+
+        editor.putString(CHAVE_LISTA_SELECIONADA, lista);
+        editor.apply();
+    }
+    public void removeListaSelecionada() {
+
+        editor.putString(CHAVE_LISTA_SELECIONADA, "");
+        editor.apply();
+    }
+
     public String getIdUsuarioLogado() {
         return preferences.getString(CHAVE_ID_USUARIO, null);
     }
@@ -77,5 +89,8 @@ public class Preferencias {
     }
     public Boolean getProdutosPopulado() {
         return preferences.getBoolean(CHAVE_PRODUTO_POPULADO, false);
+    }
+    public String getListaSelecionada() {
+        return preferences.getString(CHAVE_LISTA_SELECIONADA, null);
     }
 }

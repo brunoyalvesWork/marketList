@@ -19,7 +19,11 @@ public class MainActivity extends AppCompatActivity {
 
         Preferencias preferencias = new Preferencias(MainActivity.this);
         if (preferencias.getEstadoLogin()) {
-            startActivity(new Intent(MainActivity.this, PrincipalActivity.class));
+            if (preferencias.getListaSelecionada() == null || preferencias.getListaSelecionada().isEmpty()) {
+                startActivity(new Intent(MainActivity.this, CriarListaActivity.class));
+            } else {
+                startActivity(new Intent(MainActivity.this, PrincipalActivity.class));
+            }
             finish();
         }
 

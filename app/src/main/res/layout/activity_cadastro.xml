@@ -39,7 +39,7 @@
                 android:backgroundTint="@color/colorSecondaryDark"
                 android:fontFamily="@font/roboto"
                 android:hint="Nome de usuário"
-                android:inputType="text"
+                android:inputType="textCapSentences"
                 android:textColorHint="@color/colorSecondary" />
 
         </android.support.design.widget.TextInputLayout>

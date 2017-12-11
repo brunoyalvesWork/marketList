@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ProdutoDAO {
 
-    private String TABLE_PRODUTO = "Produto";
+    private String TABLE_PRODUTO = "produto";
     private DbGateway gw;
 
     public ProdutoDAO(Context context) {
@@ -33,7 +33,7 @@ public class ProdutoDAO {
     public List<Produto> getProdutos() {
 
         List<Produto> produtos = new ArrayList<>();
-        String query = "SELECT * FROM "+TABLE_PRODUTO+" ORDER BY id";
+        String query = "SELECT * FROM "+TABLE_PRODUTO+" ORDER BY categoria";
         Cursor cursor = gw.getDatabase().rawQuery(query, null);
         cursor.moveToFirst();
 

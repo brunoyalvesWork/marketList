@@ -1,15 +1,18 @@
 package com.sato.bruno.marketlist.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.InflateException;
 import android.view.LayoutInflater;
@@ -18,6 +21,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,9 +30,12 @@ import com.sato.bruno.marketlist.R;
 import com.sato.bruno.marketlist.adapter.TabAdapter;
 import com.sato.bruno.marketlist.db.ConfiguracaoFirebase;
 import com.sato.bruno.marketlist.db.Populate;
+import com.sato.bruno.marketlist.model.dao.ListaDAO;
 import com.sato.bruno.marketlist.utilities.Preferencias;
 import com.sato.bruno.marketlist.utilities.SlidingTabLayout;
 import com.sato.bruno.marketlist.utilities.VerificaConexao;
+
+import java.util.UUID;
 
 public class PrincipalActivity extends AppCompatActivity {
 
