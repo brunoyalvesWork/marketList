@@ -35,6 +35,7 @@ public class ConfiguracaoFragment extends Fragment {
 
         configuracoes = new ArrayList<>();
         configuracoes.add("Perfil");
+        configuracoes.add("Listas");
 
         ListView listaConfig = view.findViewById(R.id.lista_config);
         adapter = new ConfigAdapter(getActivity(), configuracoes);

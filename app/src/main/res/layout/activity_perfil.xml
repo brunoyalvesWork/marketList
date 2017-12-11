@@ -63,7 +63,7 @@
                 android:hint="E-mail" />
         </android.support.design.widget.TextInputLayout>
 
-        <Button
+        <Button android:id="@+id/bt_salva_perfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
